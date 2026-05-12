@@ -1,0 +1,7 @@
+{
+  "name": "Learning-course-marketplace-system",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
