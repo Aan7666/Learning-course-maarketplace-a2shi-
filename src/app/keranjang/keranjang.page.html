@@ -1,0 +1,21 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Keranjang Belanja</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="cart-content">
+  <div class="empty-cart-container">
+    <div class="icon-circle">
+      <ion-icon name="cart-outline"></ion-icon>
+    </div>
+    <h2>Keranjang Anda Kosong</h2>
+    <p>Jelajahi berbagai kursus menarik kami dan mulailah belajar hari ini!</p>
+    <ion-button expand="block" class="explore-btn" routerLink="/tabs/home">
+      Cari Kursus
+    </ion-button>
+  </div>
+</ion-content>

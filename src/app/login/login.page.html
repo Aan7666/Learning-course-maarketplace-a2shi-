@@ -1,0 +1,75 @@
+<div class="login-wrapper">
+
+  <div class="background-layer">
+    <div class="brand-area">
+      <span class="brand-title">Academy</span>
+      <span class="brand-subtitle">Sports & Outdoors</span>
+    </div>
+  </div>
+
+  <div class="stars-container">
+    <div *ngFor="let star of stars" class="star" [ngStyle]="{
+           'width.px': star.size,
+           'height.px': star.size,
+           'top.%': star.top,
+           'left.%': star.left,
+           'opacity': star.opacity
+         }">
+    </div>
+  </div>
+
+  <main class="main-content">
+    <div class="login-card animate-slide-up">
+
+      <div class="card-header">
+        <h1>Login</h1>
+        <p>
+          Don't have an Account?
+          <a routerLink="/register" class="text-link">Register</a>
+        </p>
+      </div>
+
+      <h2 class="form-title">Login to your Account</h2>
+
+      <form class="login-form" (ngSubmit)="onLogin()">
+
+        <div class="input-group">
+          <span class="material-symbols-outlined input-icon">person</span>
+          <input type="text" [(ngModel)]="username" name="username" placeholder="Email or Username" class="custom-input" required />
+        </div>
+
+        <div class="input-group">
+          <span class="material-symbols-outlined input-icon">password</span>
+          <input type="password" [(ngModel)]="password" name="password" placeholder="Password" class="custom-input" required />
+        </div>
+
+        <div class="forgot-password">
+          <a href="#" class="text-link-small">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn-primary">
+          <span>Login</span>
+        </button>
+      </form>
+
+      <div class="divider">
+        <div class="line"></div>
+        <span>Or Continue with</span>
+        <div class="line"></div>
+      </div>
+
+      <button type="button" class="btn-social">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzd6zNR1Yao3qqAJ3aXriyKcDlkOrJF8xleGQVPFhrzo5BRKz_oiTFpm3ixeAfairpDZse3bAekR5rjmmQLTCD3Qcy0KUM73jmVfa8CgNCpkvqmBofn8f5ANvc1AsltpqT3kahE--k33mjtpRKOwR1wM4EzH-xzcWAbYkioprA7RW_06m-EUeOsOykU9WP_H1qRYke4FhSnwzaAY14WS_82MXhlI9JZACZ2hM5hBgArJd9fc1A3Nbog2m-88EHJ-xI_eHZeTHYMnA"
+          alt="Google" />
+        <span>Google</span>
+      </button>
+
+      <button type="button" class="btn-guest" routerLink="/tabs">
+        <span class="material-symbols-outlined">home</span>
+        <span>Continue to Home</span>
+      </button>
+
+    </div>
+  </main>
+</div>

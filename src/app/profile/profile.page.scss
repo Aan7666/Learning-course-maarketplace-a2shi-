@@ -1,0 +1,170 @@
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+  font-family: 'Lexend', sans-serif;
+}
+
+ion-content {
+  --background: #f7f5f5;
+}
+
+/* Red Header Section */
+.red-header {
+  background-color: #852920; // Terracotta / Dark Red branding color
+  padding: 36px 24px 64px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+
+  .header-title {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.2px;
+    text-align: center;
+  }
+}
+
+/* Main Body Container overlapping the header */
+.main-container {
+  background-color: #f7f5f5; // Off-white/gray background
+  border-radius: 40px 40px 0 0;
+  margin-top: -36px;
+  position: relative;
+  z-index: 10;
+  padding: 24px;
+  min-height: calc(100% + 36px);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Profile Avatar Section */
+.profile-header-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8px;
+  margin-bottom: 24px;
+
+  .avatar-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+
+    .avatar-icon {
+      font-size: 96px;
+      color: #1a1a1a;
+    }
+  }
+
+  .profile-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 4px 0;
+    letter-spacing: -0.2px;
+  }
+
+  .profile-email {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: #7f8c8d;
+    margin: 0;
+    letter-spacing: 0.1px;
+  }
+}
+
+/* Menu Group Containers */
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.menu-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Section Label (Name, Informations) */
+.section-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #7f8c8d;
+  margin-left: 6px;
+  letter-spacing: 0.1px;
+}
+
+/* Menu Item Boxes */
+.menu-item-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #ebe9e9; // Perfect light gray matching the mockup boxes
+  border-radius: 16px;
+  padding: 14px 18px;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+
+  .item-icon {
+    font-size: 20px;
+    color: #1a1a1a;
+  }
+
+  .item-text {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  &.clickable {
+    cursor: pointer;
+
+    &:active {
+      transform: scale(0.98);
+      background-color: #dfdddd;
+    }
+  }
+}
+
+/* Action/Button Container */
+.action-container {
+  margin-top: auto; // Push button to bottom if there's flexible height
+  padding: 16px 0 24px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* SIGN OUT Button */
+.btn-signout {
+  background-color: #852920; // Red/terracotta brand color
+  color: #ffffff;
+  font-family: 'Lexend', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 12px 42px;
+  border-radius: 9999px; // Fully rounded pill button
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(133, 41, 32, 0.25);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    background-color: #722018;
+  }
+
+  &:active {
+    transform: scale(0.94);
+    box-shadow: 0 2px 6px rgba(133, 41, 32, 0.15);
+  }
+}

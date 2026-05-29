@@ -1,0 +1,52 @@
+<ion-content [fullscreen]="true">
+  <!-- Red Header Section -->
+  <div class="red-header">
+    <h1 class="header-title">Account</h1>
+  </div>
+
+  <!-- Main Container -->
+  <div class="main-container">
+    
+    <!-- Profile Avatar Card -->
+    <div class="profile-header-card">
+      <div class="avatar-wrapper">
+        <ion-icon name="person-circle" class="avatar-icon"></ion-icon>
+      </div>
+      <h2 class="profile-name">{{ userName }}</h2>
+      <p class="profile-email">{{ userEmail }}</p>
+    </div>
+
+    <!-- Menu Sections -->
+    <div class="menu-container">
+      <!-- Section: Name -->
+      <div class="menu-group">
+        <span class="section-label">Name</span>
+        <div class="menu-item-box">
+          <ion-icon name="person-outline" class="item-icon"></ion-icon>
+          <span class="item-text">{{ userName }}</span>
+        </div>
+      </div>
+
+      <!-- Section: Informations -->
+      <div class="menu-group">
+        <span class="section-label">Informations</span>
+        
+        <div class="menu-item-box clickable">
+          <ion-icon name="information-circle-outline" class="item-icon"></ion-icon>
+          <span class="item-text">About Us</span>
+        </div>
+
+        <div class="menu-item-box clickable">
+          <ion-icon name="help-circle-outline" class="item-icon"></ion-icon>
+          <span class="item-text">Help and Support</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sign Out Button -->
+    <div class="action-container">
+      <button class="btn-signout" (click)="onSignOut()">SIGN OUT</button>
+    </div>
+
+  </div>
+</ion-content>

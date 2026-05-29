@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'com.a2shi.academy.myapp',
   appName: 'Learning-course-marketplace-system',
   webDir: 'www'
 };

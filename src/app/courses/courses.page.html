@@ -1,0 +1,46 @@
+<ion-content [fullscreen]="true">
+  <!-- Red Header Section -->
+  <div class="red-header">
+    <div class="header-button filter-btn">
+      <ion-icon name="funnel-outline"></ion-icon>
+    </div>
+    <h1 class="header-title">My Learning</h1>
+    <div class="header-button search-btn">
+      <ion-icon name="search-outline"></ion-icon>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="main-container">
+    
+    <!-- Empty State Content -->
+    <div class="empty-state">
+      <div class="illustration-container">
+        <!-- Desktop Computer (Left) -->
+        <div class="icon-wrapper desktop-wrapper">
+          <ion-icon name="desktop-outline" class="empty-icon"></ion-icon>
+        </div>
+        
+        <!-- Medal (Center/Bottom) -->
+        <div class="icon-wrapper medal-wrapper">
+          <ion-icon name="medal-outline" class="empty-icon"></ion-icon>
+        </div>
+        
+        <!-- Book (Right) -->
+        <div class="icon-wrapper book-wrapper">
+          <ion-icon name="book-outline" class="empty-icon"></ion-icon>
+        </div>
+      </div>
+
+      <h2 class="empty-title">Start learning something new</h2>
+      <p class="empty-subtitle">The courses you join will show up here.</p>
+    </div>
+
+    <!-- Sign In Bottom Banner (shown ONLY when not logged in) -->
+    <div class="signin-banner" *ngIf="!isLoggedIn">
+      <span class="banner-text">Sign in to unlock the full potential of your learning journey.</span>
+      <a class="banner-link" (click)="redirectToLogin()">SIGN IN</a>
+    </div>
+
+  </div>
+</ion-content>

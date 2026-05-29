@@ -1,0 +1,362 @@
+// ---- Variables ----
+$primary: #832e25;
+$primary-container: #a2453a;
+$surface: #fbf9f8;
+$on-surface: #1b1c1b;
+$on-surface-variant: #56423f;
+$outline-variant: #dcc0bc;
+$input-bg: #DBDBDB;
+
+// ---- Host / Global ----
+:host {
+  display: block;
+  height: 100%;
+}
+
+ion-content {
+  --background: transparent;
+}
+
+// ---- Wrapper ----
+.login-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  font-family: 'Lexend', sans-serif;
+  background: $primary; // fallback
+}
+
+// ---- Background Gradient Layer ----
+.background-layer {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, #832e25 0%, #a2453a 100%);
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 72px;
+}
+
+.brand-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.brand-title {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.brand-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+// ---- Stars ambient layer ----
+.stars-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.1;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+// ---- Main content (positions card at bottom) ----
+.main-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+
+// ---- Login Card ----
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.login-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 480px;
+  border-radius: 48px 48px 0 0;
+  padding: 32px 32px 48px;
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &.animate-slide-up {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+// ---- Card Header ----
+.card-header {
+  text-align: center;
+  margin-bottom: 28px;
+  width: 100%;
+
+  h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: $on-surface;
+    margin: 0 0 8px;
+    line-height: 1.2;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 400;
+    color: $on-surface-variant;
+    margin: 0;
+  }
+}
+
+.text-link {
+  color: $primary;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// ---- Form Title ----
+.form-title {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  color: $on-surface;
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+// ---- Login Form ----
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+// ---- Input Group ----
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .input-icon {
+    position: absolute;
+    left: 20px;
+    color: $on-surface-variant;
+    font-size: 22px;
+    pointer-events: none;
+    transition: color 0.2s;
+    // Material Symbols specific
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+
+  &:focus-within .input-icon {
+    color: $primary;
+  }
+}
+
+.custom-input {
+  width: 100%;
+  height: 58px;
+  background-color: $input-bg;
+  border: none;
+  border-radius: 9999px;
+  padding: 0 20px 0 58px;
+  font-family: 'Lexend', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: $on-surface;
+  outline: none;
+  transition: box-shadow 0.2s, background-color 0.2s;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: rgba($on-surface-variant, 0.6);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px $primary;
+    background-color: darken($input-bg, 3%);
+  }
+}
+
+// ---- Forgot Password ----
+.forgot-password {
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.text-link-small {
+  font-size: 12px;
+  font-weight: 600;
+  color: $primary;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// ---- Primary Button (Login) ----
+.btn-primary {
+  width: 100%;
+  height: 58px;
+  background-color: $primary-container;
+  color: #ffffff;
+  font-family: 'Lexend', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 9999px;
+  box-shadow: 0 4px 16px rgba(131, 46, 37, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+  margin-top: 8px;
+
+  &:hover {
+    background-color: $primary;
+    box-shadow: 0 6px 24px rgba(131, 46, 37, 0.4);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+// ---- Divider ----
+.divider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 28px 0;
+
+  .line {
+    flex: 1;
+    height: 1px;
+    background-color: $outline-variant;
+  }
+
+  span {
+    font-size: 12px;
+    font-weight: 600;
+    color: $on-surface-variant;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+}
+
+// ---- Social Login Button ----
+.btn-social {
+  width: 100%;
+  height: 52px;
+  background-color: $input-bg;
+  color: $on-surface-variant;
+  font-family: 'Lexend', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  margin-bottom: 16px;
+
+  img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  &:hover {
+    background-color: darken($input-bg, 5%);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+// ---- Guest / Home Direct Button ----
+.btn-guest {
+  width: 100%;
+  height: 52px;
+  background-color: transparent;
+  color: $primary;
+  font-family: 'Lexend', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border: 2px solid $primary;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.2s, transform 0.1s;
+  box-sizing: border-box;
+
+  .material-symbols-outlined {
+    font-size: 22px;
+    font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+  }
+
+  &:hover {
+    background-color: rgba($primary, 0.08);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+// ---- Responsive ----
+@media (min-width: 480px) {
+  .login-card {
+    padding: 40px 48px 56px;
+  }
+}
