@@ -38,7 +38,7 @@ ion-tab-button {
   ion-label {
     font-size: 11px;
     font-weight: 700;
-    color: #1a1a1a !important; // Keeps all labels consistent dark grey/black as in mockup
+    color: #1a1a1a !important; // Menjaga semua label tetap hitam/gelap konsisten
     margin-top: 4px;
     text-transform: none;
     letter-spacing: -0.1px;
@@ -46,40 +46,40 @@ ion-tab-button {
 
   ion-icon {
     font-size: 24px;
-    color: #7f8c8d;
+    color: #7f8c8d; // Warna icon saat tidak aktif
     transition: all 0.2s ease;
   }
 
-  /* Bubble wrapping the icon */
+  /* KEADAAN DEFAULT: Bubble polos transparan (Kaya My Learning tidak diklik) */
   .icon-bubble {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background-color: transparent;
+    background-color: transparent; 
     transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     z-index: 5;
   }
 
-  /* Selected active tab styling - bulges bubble upwards */
+  /* KEADAAN AKTIF: Ketika tab diklik (Kaya Home) */
   &.tab-selected {
     overflow: visible;
 
     .icon-bubble {
-      background-color: #ffffff; // White bubble matching mockup
-      transform: translateY(-15px); // Floats bubble upwards over the top border
-      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08); // Floating shadow
-      border: 1px solid #eaeaea; // Subtle border cutout
-      width: 50px;
-      height: 50px;
+      background-color: rgba(133, 41, 32, 0.1); // Memberi bubble background soft terracotta (bisa diganti jika ingin warna solid)
+      transform: translateY(-2px); // Sedikit mengangkat bubble ke atas agar stand-out
     }
 
     ion-icon {
-      color: #852920; // Terracotta / Dark Red active icon color
-      font-size: 26px;
+      color: #852920; // Warna icon berubah jadi Terracotta gelap
+      font-size: 26px; // Ukuran icon sedikit membesar
+    }
+    
+    ion-label {
+      color: #852920 !important; // Opsional: jika ingin text label ikut berubah warna saat diklik
     }
   }
 }
