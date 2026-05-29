@@ -44,17 +44,25 @@ export class LoginPage implements OnInit {
 
   onLogin() {
     if (!this.username.trim() || !this.password) {
-      alert('Please enter both username/email and password.');
+      alert('Please enter both email and password.');
       return;
     }
 
-    const result = this.authService.login(this.username, this.password);
-    if (result.success) {
-      alert('Login successful!');
-      this.router.navigate(['/tabs']);
-    } else {
-      alert(result.message);
-    }
+    this.authService.login(this.username, this.password).subscribe({
+      next: (result) => {
+        if (result.success) {
+          alert(result.message || 'Login successful!');
+          this.router.navigate(['/tabs']);
+        } else {
+          alert(result.message || 'Login failed.');
+        }
+      },
+      error: (err) => {
+        console.error(err);
+        const errMsg = err.error?.message || 'Email atau password salah!';
+        alert(errMsg);
+      }
+    });
   }
 
   loginWithGoogle() {
@@ -67,7 +75,7 @@ export class LoginPage implements OnInit {
       fullName: 'Google User',
       password: 'google_password'
     });
-    this.authService.login(mockGoogleEmail, 'google_password');
+    this.authService.loginLocal(mockGoogleEmail, 'google_password');
     alert('Google Login successful!');
     this.router.navigate(['/tabs']);
   }

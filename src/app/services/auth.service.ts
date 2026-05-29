@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 export interface User {
   email: string;
@@ -13,7 +17,7 @@ export class AuthService {
   private readonly USERS_KEY = 'a2shi_users';
   private readonly SESSION_KEY = 'a2shi_current_users';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   /**
    * Get all registered users from LocalStorage
@@ -60,9 +64,9 @@ export class AuthService {
   }
 
   /**
-   * Authenticate a user by email/username and password
+   * Authenticate a user locally by email/username and password
    */
-  login(emailOrUsername: string, passwordInput: string): { success: boolean; message: string; user?: User } {
+  loginLocal(emailOrUsername: string, passwordInput: string): { success: boolean; message: string; user?: User } {
     if (!emailOrUsername || !passwordInput) {
       return { success: false, message: 'Username and password are required.' };
     }
@@ -88,6 +92,27 @@ export class AuthService {
     localStorage.setItem(this.SESSION_KEY, JSON.stringify(sessionUser));
 
     return { success: true, message: 'Login successful!', user: sessionUser };
+  }
+
+  /**
+   * Authenticate a user via Laravel Backend API
+   */
+  login(email: string, passwordInput: string): Observable<any> {
+    return this.http.post<any>(`${environment.apiUrl}/login`, {
+      email: email,
+      password: passwordInput
+    }).pipe(
+      tap(response => {
+        if (response && response.success && response.user) {
+          // Map backend response 'name' to 'fullName' for UI compatibility
+          const sessionUser: User = {
+            email: response.user.email,
+            fullName: response.user.name
+          };
+          localStorage.setItem(this.SESSION_KEY, JSON.stringify(sessionUser));
+        }
+      })
+    );
   }
 
   /**

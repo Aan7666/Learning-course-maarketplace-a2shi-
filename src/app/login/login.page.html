@@ -35,16 +35,18 @@
 
         <div class="input-group">
           <span class="material-symbols-outlined input-icon">person</span>
-          <input type="text" [(ngModel)]="username" name="username" placeholder="Email or Username" class="custom-input" required />
+          <input type="text" [(ngModel)]="username" name="username" placeholder="Email or Username" class="custom-input"
+            required />
         </div>
 
         <div class="input-group">
           <span class="material-symbols-outlined input-icon">password</span>
-          <input type="password" [(ngModel)]="password" name="password" placeholder="Password" class="custom-input" required />
+          <input type="password" [(ngModel)]="password" name="password" placeholder="Password" class="custom-input"
+            required />
         </div>
 
         <div class="forgot-password">
-          <a href="#" class="text-link-small">Forgot Password?</a>
+          <a routerLink="/lupa-password" class="text-link-small">Forgot Password?</a>
         </div>
 
         <button type="submit" class="btn-primary">
