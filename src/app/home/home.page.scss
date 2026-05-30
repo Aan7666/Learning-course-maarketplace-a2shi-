@@ -60,8 +60,9 @@ ion-content {
   z-index: 10;
   padding: 24px;
   
-  /* Cukup gunakan padding bawah standar untuk estetika, bukan untuk mengakali tab-bar */
-  padding-bottom: 32px; 
+  /* FIX: Ditambah padding bawah sebesar 70px agar konten galeri/kategori 
+     paling bawah tidak tertutup oleh banner melayang saat di-scroll */
+  padding-bottom: 70px; 
 }
 
 /* Hero/Promo Banner Placeholder */
@@ -90,12 +91,12 @@ ion-content {
   gap: 16px;
   padding: 2px 2px 18px 2px;
   margin-bottom: 24px;
-  scrollbar-width: none; // Firefox
+  scrollbar-width: none; 
   -webkit-overflow-scrolling: touch;
   will-change: transform;
 
   &::-webkit-scrollbar {
-    display: none; // Chrome/Safari
+    display: none; 
   }
 }
 
@@ -207,41 +208,4 @@ ion-content {
   }
 }
 
-/* Guest Sign-In Bottom Sticky Banner */
-.signin-banner {
-  background-color: #d1d8e0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 20px;
-  font-size: 11px;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-left: -24px;
-  margin-right: -24px;
-  margin-bottom: -24px;
-  border-top: 1.5px solid #bdc3c7;
-  border-radius: 0;
-  margin-top: 20px;
-}
 
-.banner-text {
-  flex: 1;
-  margin-right: 12px;
-  line-height: 1.35;
-}
-
-.banner-link {
-  color: #0066cc; 
-  text-decoration: none;
-  font-weight: 800;
-  white-space: nowrap;
-  cursor: pointer;
-  letter-spacing: 0.5px;
-  font-size: 11px;
-
-  &:hover,
-  &:active {
-    opacity: 0.7;
-  }
-}

@@ -7,15 +7,22 @@
 
 ion-content {
   --background: #f7f5f5;
+
+  /* Kunci utama: scroll container menjadi flex column penuh */
+  &::part(scroll) {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
 }
 
 .red-header {
   background-color: #852920;
   padding: 36px 24px 64px 24px;
   display: flex;
-  justify-content: center; /* judul tetap di tengah penuh */
+  justify-content: center;
   align-items: center;
-  position: relative;       /* jangkar untuk tombol absolute */
+  position: relative;
   box-sizing: border-box;
 
   .header-title {
@@ -25,7 +32,6 @@ ion-content {
     margin: 0;
     letter-spacing: -0.2px;
     text-align: center;
-    /* tidak perlu padding atau flex — biarkan justify-content: center bekerja */
   }
 
   .header-button {
@@ -42,13 +48,15 @@ ion-content {
     transition: all 0.2s ease;
 
     position: absolute;
-    top: 50%;                        /* ← kunci: titik tengah vertikal */
-    transform: translateY(-100%);     /* ← geser ke atas setengah tinggi tombol */
+    top: 50%;
+    transform: translateY(-75%);
 
-    ion-icon { font-size: 18px; }
+    ion-icon {
+      font-size: 18px;
+    }
 
     &:active {
-      transform: translateY(-50%) scale(0.92); /* jaga translateY saat active */
+      transform: translateY(-75%) scale(0.92);
       background-color: rgba(255, 255, 255, 0.25);
     }
 
@@ -57,28 +65,29 @@ ion-content {
   }
 }
 
-/* Main Body Container overlapping the header */
+/* Main container mengisi sisa tinggi layar */
 .main-container {
   background-color: #f7f5f5;
   border-radius: 40px 40px 0 0;
   margin-top: -36px;
   position: relative;
   z-index: 10;
-  padding: 24px;
-  min-height: calc(100% + 36px);
+  padding: 0;
+  height: calc(100vh - 130px); /* tinggi layar dikurangi header + tab bar */
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
-/* Empty State Container */
+/* Empty state tetap di tengah tapi beri padding bawah untuk ruang banner */
 .empty-state {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  padding: 40px 20px 60px 20px; /* padding bawah = tinggi banner */
   text-align: center;
 }
 
@@ -108,7 +117,6 @@ ion-content {
   .empty-icon {
     font-size: 32px;
     color: #1a1a1a;
-    stroke-width: 2.5px;
   }
 }
 
@@ -163,7 +171,6 @@ ion-content {
   color: #1a1a1a;
   margin: 0 0 10px 0;
   letter-spacing: -0.2px;
-  text-transform: lowercase; // Menyesuaikan preferensi patokan lowercase kamu
 }
 
 .empty-subtitle {
@@ -173,42 +180,5 @@ ion-content {
   margin: 0;
   max-width: 260px;
   line-height: 1.5;
-  text-transform: lowercase;
 }
 
-/* Guest Sign-In Bottom Sticky Banner */
-.signin-banner {
-  background-color: #d1d8e0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 20px;
-  font-size: 11px;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-left: -24px;
-  margin-right: -24px;
-  margin-bottom: -24px;
-  margin-top: auto; 
-  border-top: 1.5px solid #bdc3c7;
-
-  .banner-text {
-    flex: 1;
-    margin-right: 12px;
-    line-height: 1.35;
-  }
-
-  .banner-link {
-    color: #0066cc;
-    text-decoration: none;
-    font-weight: 800;
-    white-space: nowrap;
-    cursor: pointer;
-    letter-spacing: 0.5px;
-    font-size: 11px;
-
-    &:hover, &:active {
-      opacity: 0.7;
-    }
-  }
-}

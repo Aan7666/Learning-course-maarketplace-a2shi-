@@ -9,18 +9,19 @@ import {
   IonTabButton,
   IonTabs
 } from '@ionic/angular/standalone';
+import { Router } from '@angular/router'; // <-- DITAMBAHKAN
 
 import { addIcons } from 'ionicons'; 
 import {
   home,
-  homeOutline,            // <-- DITAMBAHKAN (Line 18)
-  playCircle,             // <-- DITAMBAHKAN (Line 19)
+  homeOutline,
+  playCircle,
   playCircleOutline,
-  search,                 // <-- DITAMBAHKAN (Line 21)
+  search,
   searchOutline,
-  heart,                  // <-- DITAMBAHKAN (Line 23)
+  heart,
   heartOutline,
-  personCircle,           // <-- DITAMBAHKAN (Line 25)
+  personCircle,
   personCircleOutline
 } from 'ionicons/icons'; 
 
@@ -42,28 +43,41 @@ import {
 })
 export class TabsPage implements OnInit {
 
-  activeTab: string = 'home'; // <-- DITAMBAHKAN (Line 48)
+  activeTab: string = 'home';
+  isLoggedIn: boolean = false; // <-- DITAMBAHKAN
 
-  constructor() {
+  constructor(private router: Router) { // <-- DITAMBAHKAN Router
     addIcons({
       home,
-      'home-outline': homeOutline,                       // <-- DITAMBAHKAN (Line 53)
-      'play-circle': playCircle,                         // <-- DITAMBAHKAN (Line 54)
+      'home-outline': homeOutline,
+      'play-circle': playCircle,
       'play-circle-outline': playCircleOutline,
-      'search': search,                                  // <-- DITAMBAHKAN (Line 56)
+      'search': search,
       'search-outline': searchOutline,
-      'heart': heart,                                    // <-- DITAMBAHKAN (Line 58)
+      'heart': heart,
       'heart-outline': heartOutline,
-      'person-circle': personCircle,                     // <-- DITAMBAHKAN (Line 60)
+      'person-circle': personCircle,
       'person-circle-outline': personCircleOutline
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
 
-  // <-- DITAMBAHKAN (Line 67 - 69)
+  // Sementara untuk testing — banner pasti muncul
+  //this.isLoggedIn = false;
+  
+  // Aktifkan ini setelah auth service siap:
+  this.isLoggedIn = !!localStorage.getItem('token');
+}
+
+
   tabChanged(event: any) {
     this.activeTab = event.tab;
+  }
+
+
+  redirectToLogin() { // <-- DITAMBAHKAN
+    this.router.navigate(['/login']);
   }
 
 }

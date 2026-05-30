@@ -38,7 +38,7 @@ ion-tab-button {
   ion-label {
     font-size: 11px;
     font-weight: 700;
-    color: #1a1a1a !important; // Menjaga semua label tetap hitam/gelap konsisten
+    color: #1a1a1a !important;
     margin-top: 4px;
     text-transform: none;
     letter-spacing: -0.1px;
@@ -46,11 +46,10 @@ ion-tab-button {
 
   ion-icon {
     font-size: 24px;
-    color: #7f8c8d; // Warna icon saat tidak aktif
+    color: #7f8c8d;
     transition: all 0.2s ease;
   }
 
-  /* KEADAAN DEFAULT: Bubble polos transparan (Kaya My Learning tidak diklik) */
   .icon-bubble {
     width: 40px;
     height: 40px;
@@ -58,28 +57,61 @@ ion-tab-button {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background-color: transparent; 
+    background-color: transparent;
     transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     z-index: 5;
   }
 
-  /* KEADAAN AKTIF: Ketika tab diklik (Kaya Home) */
   &.tab-selected {
     overflow: visible;
 
     .icon-bubble {
-      background-color: rgba(133, 41, 32, 0.1); // Memberi bubble background soft terracotta (bisa diganti jika ingin warna solid)
-      transform: translateY(-2px); // Sedikit mengangkat bubble ke atas agar stand-out
+      background-color: rgba(133, 41, 32, 0.1);
+      transform: translateY(-2px);
     }
 
     ion-icon {
-      color: #852920; // Warna icon berubah jadi Terracotta gelap
-      font-size: 26px; // Ukuran icon sedikit membesar
+      color: #852920;
+      font-size: 26px;
     }
-    
+
     ion-label {
-      color: #852920 !important; // Opsional: jika ingin text label ikut berubah warna saat diklik
+      color: #852920 !important;
     }
+  }
+} // <-- tutup ion-tab-button di sini
+
+/* ✅ signin-banner di luar ion-tab-button */
+.signin-banner {
+  position: fixed;
+  bottom: 68px; /* sesuai height ion-tab-bar */
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: #cfdbec;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-top: 1px solid #b4c5dc;
+  box-sizing: border-box;
+
+  .banner-text {
+    flex: 1;
+    margin-right: 16px;
+    line-height: 1.4;
+    color: #1a1a1a;
+    font-size: 10.5px;
+    font-weight: 500;
+  }
+
+  .banner-link {
+    color: #1d60b5;
+    text-decoration: none;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 11px;
   }
 }
