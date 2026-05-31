@@ -14,13 +14,13 @@ import { AuthService } from '../services/auth.service';
 })
 export class ProfilePage implements OnInit {
   isLoggedIn: boolean = false;
-  userName: string = 'Bruno Fernando';
-  userEmail: string = 'brunofernando21@gmail.com';
+  userName: string = '';
+  userEmail: string = '';
 
   constructor(
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.checkLoginStatus();
@@ -39,14 +39,28 @@ export class ProfilePage implements OnInit {
         this.userEmail = currentUser.email;
       }
     } else {
-      // Default mock data matching the screenshot
-      this.userName = 'Bruno Fernando';
-      this.userEmail = 'brunofernando21@gmail.com';
+      this.userName = '';
+      this.userEmail = '';
     }
+  }
+
+  onSignIn() {
+    this.router.navigate(['/login']);
   }
 
   onSignOut() {
     this.authService.logout();
+    this.isLoggedIn = false;
+    this.userName = '';
+    this.userEmail = '';
     this.router.navigate(['/login']);
+  }
+
+  onAboutUs() {
+    // this.router.navigate(['/about']);
+  }
+
+  onHelpSupport() {
+    // this.router.navigate(['/help']);
   }
 }
