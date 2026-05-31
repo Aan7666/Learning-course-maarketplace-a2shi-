@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -9,21 +9,16 @@ import {
   IonTabButton,
   IonTabs
 } from '@ionic/angular/standalone';
-import { Router } from '@angular/router'; // <-- DITAMBAHKAN
+import { Router } from '@angular/router';
 
-import { addIcons } from 'ionicons'; 
+import { addIcons } from 'ionicons';
 import {
-  home,
-  homeOutline,
-  playCircle,
-  playCircleOutline,
-  search,
-  searchOutline,
-  heart,
-  heartOutline,
-  personCircle,
-  personCircleOutline
-} from 'ionicons/icons'; 
+  home, homeOutline,
+  search, searchOutline,
+  heart, heartOutline,
+  person, personOutline,
+  book, bookOutline
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-tabs',
@@ -38,46 +33,52 @@ import {
     IonTabBar,
     IonTabButton,
     IonIcon,
-    IonLabel 
+    IonLabel
   ]
 })
 export class TabsPage implements OnInit {
 
   activeTab: string = 'home';
-  isLoggedIn: boolean = false; // <-- DITAMBAHKAN
+  isLoggedIn: boolean = false;
 
-  constructor(private router: Router) { // <-- DITAMBAHKAN Router
+  readonly TAB_BAR_HEIGHT = 60;
+  readonly BANNER_HEIGHT = 42;
+
+  constructor(
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {
     addIcons({
-      home,
-      'home-outline': homeOutline,
-      'play-circle': playCircle,
-      'play-circle-outline': playCircleOutline,
-      'search': search,
-      'search-outline': searchOutline,
-      'heart': heart,
-      'heart-outline': heartOutline,
-      'person-circle': personCircle,
-      'person-circle-outline': personCircleOutline
+      'home': home, 'home-outline': homeOutline,
+      'search': search, 'search-outline': searchOutline,
+      'heart': heart, 'heart-outline': heartOutline,
+      'person': person, 'person-outline': personOutline,
+      'book': book, 'book-outline': bookOutline
     });
   }
 
   ngOnInit() {
-
-  // Sementara untuk testing — banner pasti muncul
-  //this.isLoggedIn = false;
-  
-  // Aktifkan ini setelah auth service siap:
-  this.isLoggedIn = !!localStorage.getItem('token');
-}
-
+    this.isLoggedIn = !!localStorage.getItem('token');
+    this.updateBottomOffset();
+  }
 
   tabChanged(event: any) {
     this.activeTab = event.tab;
+    this.updateBottomOffset();
+    this.cdr.detectChanges();
   }
 
+  navigateToCourses() {
+    this.router.navigate(['/tabs/courses']);
+  }
 
-  redirectToLogin() { // <-- DITAMBAHKAN
+  redirectToLogin() {
     this.router.navigate(['/login']);
   }
 
+  private updateBottomOffset() {
+    const showBanner = !this.isLoggedIn && this.activeTab !== 'profile';
+    const totalOffset = this.TAB_BAR_HEIGHT + (showBanner ? this.BANNER_HEIGHT : 0);
+    document.documentElement.style.setProperty('--bottom-offset', `${totalOffset}px`);
+  }
 }
