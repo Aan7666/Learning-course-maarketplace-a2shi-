@@ -12,7 +12,7 @@ ion-content {
 /* Red Header Section */
 .red-header {
   background-color: #852920; // Terracotta / Dark Red branding color
-  padding: 36px 24px 64px 24px;
+  padding: 25px 24px 64px 24px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,12 +27,39 @@ ion-content {
     letter-spacing: -0.2px;
     text-align: center;
   }
+
+  .header-button {
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-100%);
+
+    ion-icon {
+      font-size: 18px;
+      stroke-width: 48px;
+    }
+
+    &:active {
+      transform: translateY(-100%) scale(0.92);
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+
+    &.filter-btn { left: 24px; }
+  }
 }
 
 /* Main Body Container overlapping the header */
 .main-container {
   background-color: #f7f5f5; // Off-white/gray background
-  border-radius: 40px 40px 0 0;
   margin-top: -36px;
   position: relative;
   z-index: 10;

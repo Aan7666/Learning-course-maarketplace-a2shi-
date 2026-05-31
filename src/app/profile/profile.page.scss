@@ -12,7 +12,7 @@ ion-content {
 /* Red Header Section */
 .red-header {
   background-color: #852920; // Terracotta / Dark Red branding color
-  padding: 36px 24px 64px 24px;
+  padding: 25px 24px 64px 24px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,7 +32,7 @@ ion-content {
 /* Main Body Container overlapping the header */
 .main-container {
   background-color: #f7f5f5; // Off-white/gray background
-  border-radius: 40px 40px 0 0;
+ 
   margin-top: -36px;
   position: relative;
   z-index: 10;
