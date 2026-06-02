@@ -25,19 +25,27 @@ const routes: Routes = [
   },
   {
     path: 'tabs',
-    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+    loadChildren: () => import('./before-login/tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+  {
+    path: 'tabs-after-login',
+    loadChildren: () => import('./after-login/tabs-after-login/tabs.module').then( m => m.TabsPageModule)
   },
   { // <--- TAMBAHKAN BAGIAN INI
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./before-login/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'keranjang',
     loadChildren: () => import('./keranjang/keranjang.module').then( m => m.KeranjangPageModule)
   },
   {
-    path: 'lupa-password',
-    loadChildren: () => import('./lupa-password/lupa-password.module').then( m => m.LupaPasswordPageModule)
+    path: 'detail-course',
+    loadChildren: () => import('./detail-course/detail-course.module').then( m => m.DetailCoursePageModule)
+  },
+  {
+    path: 'checkout',
+    loadChildren: () => import('./checkout/checkout.module').then( m => m.CheckoutPageModule)
   }
 ];
 

@@ -38,7 +38,7 @@ ion-content {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 72px;
+  padding-top: 45px;
 }
 
 .brand-area {
@@ -99,7 +99,7 @@ ion-content {
     transform: translateY(100%);
   }
   to {
-    transform: translateY(0);
+    transform: translateY(20px);
   }
 }
 

@@ -52,7 +52,7 @@ export class LoginPage implements OnInit {
       next: (result) => {
         if (result.success) {
           alert(result.message || 'Login successful!');
-          this.router.navigate(['/tabs']);
+          this.router.navigate(['/tabs-after-login']);
         } else {
           alert(result.message || 'Login failed.');
         }
@@ -77,6 +77,6 @@ export class LoginPage implements OnInit {
     });
     this.authService.loginLocal(mockGoogleEmail, 'google_password');
     alert('Google Login successful!');
-    this.router.navigate(['/tabs']);
+    this.router.navigate(['/tabs-after-login']);
   }
 }

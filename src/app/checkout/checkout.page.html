@@ -1,0 +1,302 @@
+<ion-content [fullscreen]="true" class="checkout-content-pane">
+  
+  <!-- ───────────────── STEP 1: CHECKOUT SELECTION ───────────────── -->
+  <ng-container *ngIf="currentStep === 1">
+    <!-- Header Section -->
+    <div class="red-header">
+      <button class="back-btn" (click)="goBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+        <span>Back</span>
+      </button>
+      <h1 class="header-title">Checkout</h1>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+      
+      <!-- Course Row -->
+      <div class="checkout-course-card">
+        <div class="course-img-placeholder"></div>
+        <div class="course-details">
+          <h3 class="course-name">Web Development</h3>
+          <p class="course-price">Rp150.000</p>
+        </div>
+      </div>
+
+      <!-- Voucher Section -->
+      <div class="voucher-box">
+        <div class="voucher-left">
+          <ion-icon name="pricetag" class="voucher-icon"></ion-icon>
+          <span class="voucher-label">Voucher Course</span>
+        </div>
+        <div class="voucher-right">
+          <span class="voucher-action">Use/enter code</span>
+          <ion-icon name="chevron-forward-outline" class="arrow-icon"></ion-icon>
+        </div>
+      </div>
+
+      <!-- Payment Method Selection -->
+      <div class="payment-method-section">
+        <div class="section-header">
+          <div class="left-head">
+            <ion-icon name="card-outline" class="sec-icon"></ion-icon>
+            <span class="sec-title">Payment Method</span>
+          </div>
+          <span class="see-all-btn">See All</span>
+        </div>
+
+        <div class="payment-options-list">
+          <!-- E-Wallet -->
+          <div 
+            class="payment-option-card" 
+            [class.selected]="selectedMethod === 'ewallet'"
+            (click)="selectMethod('ewallet')"
+          >
+            <div class="radio-indicator">
+              <div class="radio-inner" *ngIf="selectedMethod === 'ewallet'"></div>
+            </div>
+            <div class="option-details">
+              <span class="option-title">E-Wallet (OVO/Funds)</span>
+              <span class="option-subtitle">Sufficient balance</span>
+            </div>
+          </div>
+
+          <!-- Credit Card -->
+          <div 
+            class="payment-option-card" 
+            [class.selected]="selectedMethod === 'card'"
+            (click)="selectMethod('card')"
+          >
+            <div class="radio-indicator">
+              <div class="radio-inner" *ngIf="selectedMethod === 'card'"></div>
+            </div>
+            <div class="option-details">
+              <span class="option-title">Credit/Debit Card</span>
+            </div>
+          </div>
+
+          <!-- Bank Transfer -->
+          <div 
+            class="payment-option-card" 
+            [class.selected]="selectedMethod === 'bank'"
+            (click)="selectMethod('bank')"
+          >
+            <div class="radio-indicator">
+              <div class="radio-inner" *ngIf="selectedMethod === 'bank'"></div>
+            </div>
+            <div class="option-details">
+              <span class="option-title">Bank Transfer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Details -->
+      <div class="payment-details-section">
+        <div class="section-title-row">
+          <ion-icon name="receipt-outline" class="sec-icon"></ion-icon>
+          <span class="sec-title">Payment Details</span>
+        </div>
+
+        <div class="details-table">
+          <div class="details-row">
+            <span>Subtotals for Products</span>
+            <span>Rp150.000</span>
+          </div>
+          <div class="details-row">
+            <span>Discount Vouchers</span>
+            <span>-Rp0</span>
+          </div>
+          <div class="details-row total-payment-row">
+            <span>Total payment</span>
+            <span class="total-bold">Rp150.000</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Sticky Footer (Placement Bar) -->
+    <div class="checkout-footer-bar">
+      <div class="total-info">
+        <span class="total-label">Total payment</span>
+        <span class="total-value">Rp150.000</span>
+      </div>
+      <button class="btn-place-order" (click)="placeOrder()">
+        Place Order
+      </button>
+    </div>
+  </ng-container>
+
+
+  <!-- ───────────────── STEP 2: WAITING FOR PAYMENT ───────────────── -->
+  <ng-container *ngIf="currentStep === 2">
+    <!-- Header Section -->
+    <div class="red-header">
+      <button class="back-btn" (click)="goBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+        <span>Back</span>
+      </button>
+      <h1 class="header-title">Checkout</h1>
+      <button class="help-btn">Help</button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+      
+      <!-- Status Card banner -->
+      <div class="payment-status-card">
+        <span class="status-label">Payment status</span>
+        <h2 class="status-title">Waiting for Payment</h2>
+        <div class="countdown-row">
+          <ion-icon name="time-outline" class="time-icon"></ion-icon>
+          <span>Finish in {{ countdownText }}</span>
+        </div>
+      </div>
+
+      <!-- Payment details Copy box -->
+      <div class="payment-details-card">
+        <div class="total-copy-row">
+          <div class="total-left">
+            <span class="pay-title">Total payment</span>
+            <h3 class="pay-price">Rp150.000</h3>
+          </div>
+          <button class="btn-copy-action" (click)="copyText('150000', 'Total payment')">
+            <span>Copy</span>
+            <ion-icon name="copy-outline"></ion-icon>
+          </button>
+        </div>
+
+        <div class="payment-selected-row">
+          <ion-icon name="card" class="card-large-icon"></ion-icon>
+          <div class="method-info">
+            <span class="method-title">E-Wallet (OVO/Funds)</span>
+            <span class="method-sub">Selected method</span>
+          </div>
+        </div>
+
+        <div class="virtual-account-box">
+          <span class="va-title">Virtual Account Number / ID</span>
+          <div class="va-value-row">
+            <span class="va-number">8801 0822 4567 890</span>
+            <button class="btn-copy-va" (click)="copyText('880108224567890', 'Virtual Account Number')">
+              <ion-icon name="copy-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Instructions Accordion -->
+      <div class="accordion-instructions-card">
+        <div class="accordion-header" (click)="toggleInstructions()">
+          <span class="header-text">Payment Instructions</span>
+          <ion-icon 
+            [name]="isInstructionsOpen ? 'chevron-up-outline' : 'chevron-down-outline'"
+            class="chevron-acc"
+          ></ion-icon>
+        </div>
+        
+        <div class="accordion-content" *ngIf="isInstructionsOpen">
+          <ol class="instructions-steps-list">
+            <li>
+              <span class="step-num">1</span>
+              <span class="step-text">Open the OVO or Dana application on your smartphone.</span>
+            </li>
+            <li>
+              <span class="step-num">2</span>
+              <span class="step-text">Select the "Pay" or "Transfer" menu then enter the number above.</span>
+            </li>
+            <li>
+              <span class="step-num">3</span>
+              <span class="step-text">Check the transaction details and make sure the nominal value is correct.</span>
+            </li>
+            <li>
+              <span class="step-num">4</span>
+              <span class="step-text">Enter your PIN and wait for the successful payment notification.</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Order Summary Card -->
+      <div class="order-summary-card">
+        <h4 class="summary-card-title">Order Summary</h4>
+        <div class="summary-course-row">
+          <div class="course-thumb"></div>
+          <div class="course-summary-info">
+            <span class="name">Web Development</span>
+            <span class="quantity">1 item . <span class="price-highlight">Rp150.000</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Buttons stacked -->
+      <div class="waiting-footer-actions">
+        <button class="btn-check-status" (click)="checkOrderStatus()">
+          Check Order Status
+        </button>
+        <button class="btn-view-courses-outline" (click)="viewCourses()">
+          View Courses
+        </button>
+      </div>
+
+    </div>
+  </ng-container>
+
+
+  <!-- ───────────────── STEP 3: PAYMENT SUCCESS ───────────────── -->
+  <ng-container *ngIf="currentStep === 3">
+    <!-- Header Section -->
+    <div class="red-header">
+      <button class="close-btn-left" (click)="closeCheckout()">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+      <h1 class="header-title">Payment Success</h1>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container success-container">
+      
+      <!-- Big Success Checkmark -->
+      <div class="success-checkmark-circle">
+        <ion-icon name="checkmark"></ion-icon>
+      </div>
+
+      <h2 class="success-title-main">Payment Successful!</h2>
+      <p class="success-subtitle-sub">Thank you for trusting us. Your course is now live and ready to learn.</p>
+
+      <!-- Order Details Card -->
+      <div class="order-receipt-card">
+        <h4 class="receipt-title">Order Details</h4>
+        
+        <div class="receipt-table">
+          <div class="receipt-row">
+            <span class="label">Order ID</span>
+            <span class="value font-mono">{{ orderId }}</span>
+          </div>
+          <div class="receipt-row">
+            <span class="label">Date</span>
+            <span class="value">{{ orderDate }}</span>
+          </div>
+          <div class="receipt-row total-row-highlight">
+            <span class="label">Total payment</span>
+            <span class="value value-total">Rp150.000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons bottom -->
+      <div class="success-footer-actions">
+        <button class="btn-start-learning" (click)="startLearning()">
+          <span>Start Learning Now</span>
+          <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+        </button>
+        <button class="btn-my-courses-outline" (click)="goToMyCourses()">
+          Go to My Courses
+        </button>
+      </div>
+
+    </div>
+  </ng-container>
+
+</ion-content>

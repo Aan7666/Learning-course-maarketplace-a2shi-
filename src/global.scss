@@ -157,3 +157,29 @@ ion-tab-bar::part(native) {
 ion-tabs {
   overflow: visible !important;
 }
+
+// Remove scroll gray line/border/shadow from ion-header and ion-toolbar for all tabs pages
+ion-tabs ion-header,
+app-tabs ion-header,
+.tabs-inner ion-header {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+ion-tabs ion-header::after,
+app-tabs ion-header::after,
+.tabs-inner ion-header::after {
+  display: none !important;
+  background-image: none !important;
+  background: transparent !important;
+  height: 0 !important;
+}
+
+ion-tabs ion-toolbar,
+app-tabs ion-toolbar,
+.tabs-inner ion-toolbar {
+  --border-style: none !important;
+  --border-width: 0px !important;
+  border: none !important;
+  box-shadow: none !important;
+}

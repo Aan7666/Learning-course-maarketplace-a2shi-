@@ -1,0 +1,197 @@
+<ion-content [fullscreen]="true" class="detail-course-content">
+  <!-- Red Header Section -->
+  <div class="red-header">
+    <button class="back-btn" (click)="goBack()">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+      <span>Back</span>
+    </button>
+    <h1 class="header-title">Web Development</h1>
+  </div>
+
+  <!-- Main Container -->
+  <div class="main-container">
+    
+    <!-- Course Image/Video Placeholder -->
+    <div class="course-media-placeholder">
+      <ion-icon name="play-circle-outline" class="media-play-icon"></ion-icon>
+    </div>
+
+    <!-- Course Info Section -->
+    <div class="course-header-info">
+      <h2 class="course-title">Web Development</h2>
+      <p class="course-subtitle">Start your journey as a web developer by learning HTML, CSS, JavaScript, and more.</p>
+      
+      <!-- Meta Information -->
+      <div class="meta-row">
+        <span class="meta-item">
+          <ion-icon name="people-outline"></ion-icon>
+        </span>
+        <span class="meta-item">
+          <ion-icon name="star-outline"></ion-icon>
+        </span>
+      </div>
+
+      <p class="creator-text">Created by <span>Pedri Gonzalez</span></p>
+      <h3 class="course-price">Rp150.000</h3>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons-row">
+      <button class="outline-action-btn" [class.active]="isWishlisted" (click)="toggleWishlist()">
+        <ion-icon [name]="isWishlisted ? 'heart' : 'heart-outline'" class="heart-icon"></ion-icon>
+        <span>Add to wishlist</span>
+      </button>
+      <button class="outline-action-btn" [class.active]="isAddedToCart" (click)="toggleCart()">
+        <ion-icon name="cart-outline" class="cart-icon"></ion-icon>
+        <span>Add to cart</span>
+      </button>
+    </div>
+
+    <button class="btn-buy-now" (click)="buyNow()">
+      Buy Now
+    </button>
+
+    <!-- What You Will Learn Section -->
+    <div class="what-learn-section">
+      <h3 class="section-title">What You Will Learn</h3>
+      <ul class="learning-list">
+        <li>
+          <ion-icon name="checkmark-circle-outline" class="check-icon"></ion-icon>
+          <span>HTML for the framework</span>
+        </li>
+        <li>
+          <ion-icon name="checkmark-circle-outline" class="check-icon"></ion-icon>
+          <span>CSS for the design</span>
+        </li>
+        <li>
+          <ion-icon name="checkmark-circle-outline" class="check-icon"></ion-icon>
+          <span>JavaScript for the functionality/interaction</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Segment / Tabs System -->
+    <div class="custom-tabs-segment">
+      <div 
+        class="tab-segment-btn" 
+        [class.active]="activeTab === 'description'"
+        (click)="setActiveTab('description')"
+      >
+        Description
+      </div>
+      <div 
+        class="tab-segment-btn" 
+        [class.active]="activeTab === 'curriculum'"
+        (click)="setActiveTab('curriculum')"
+      >
+        Curriculum
+      </div>
+      <div 
+        class="tab-segment-btn" 
+        [class.active]="activeTab === 'instructor'"
+        (click)="setActiveTab('instructor')"
+      >
+        Instructor
+      </div>
+    </div>
+
+    <!-- Dynamic Tabs Content -->
+    <div class="tab-content-container">
+      
+      <!-- DESCRIPTION TAB -->
+      <div class="tab-pane animate-fade-in" *ngIf="activeTab === 'description'">
+        <div class="description-text" [class.expanded]="isDescriptionExpanded">
+          <p>
+            This comprehensive course will take you from a complete beginner to a confident web developer. You'll learn the most in-demand technologies including HTML5, CSS3, and Modern JavaScript, while building real-world projects that you can showcase in your portfolio.
+          </p>
+          <p>
+            Whether you're looking to start a new career, build your own website, or just curious about how the web works, this bootcamp provides everything you need to succeed in the tech industry.
+          </p>
+        </div>
+        <button class="btn-show-more" (click)="toggleDescription()">
+          <span>{{ isDescriptionExpanded ? 'Show less' : 'Show more' }}</span>
+          <ion-icon [name]="isDescriptionExpanded ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+        </button>
+      </div>
+
+      <!-- CURRICULUM TAB -->
+      <div class="tab-pane animate-fade-in" *ngIf="activeTab === 'curriculum'">
+        <div class="curriculum-summary">
+          <span class="main-label">Curriculum</span>
+          <span class="sub-label">10 Part . 50 Lesson</span>
+        </div>
+
+        <div class="curriculum-list">
+          <div class="curriculum-part" *ngFor="let part of curriculumParts">
+            <h4 class="part-title">Bagian {{ part.partNumber }} - {{ part.title }}</h4>
+            
+            <div class="lesson-list" *ngIf="part.lessons && part.lessons.length > 0">
+              <div class="lesson-item" *ngFor="let lesson of part.lessons">
+                <div class="lesson-index">{{ lesson.number }}</div>
+                <div class="lesson-details">
+                  <div class="lesson-title">{{ lesson.title }}</div>
+                  <div class="lesson-duration">{{ lesson.duration }}</div>
+                </div>
+                <button class="lesson-play-btn">
+                  <ion-icon name="play-circle" class="play-icon"></ion-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-other-parts">
+          7 Other Part
+        </button>
+      </div>
+
+      <!-- INSTRUCTOR TAB -->
+      <div class="tab-pane animate-fade-in" *ngIf="activeTab === 'instructor'">
+        <h4 class="instructor-heading">Instructor</h4>
+        <h3 class="instructor-name">Pedri Gonzalez</h3>
+        <p class="instructor-sub">A teacher who loves to teach about Technology</p>
+
+        <!-- Stats Card Row -->
+        <div class="instructor-profile-row">
+          <div class="instructor-avatar-placeholder">
+            <ion-icon name="person" class="avatar-fallback-icon"></ion-icon>
+          </div>
+          <div class="instructor-stats-column">
+            <div class="stat-item">
+              <ion-icon name="star" class="stat-icon star"></ion-icon>
+              <span>4.5 Instructor rating</span>
+            </div>
+            <div class="stat-item">
+              <ion-icon name="chatbubble-ellipses-outline" class="stat-icon"></ion-icon>
+              <span>34,748 Reviews</span>
+            </div>
+            <div class="stat-item">
+              <ion-icon name="people-outline" class="stat-icon"></ion-icon>
+              <span>145.5 Participants</span>
+            </div>
+            <div class="stat-item">
+              <ion-icon name="play-outline" class="stat-icon"></ion-icon>
+              <span>7 Courses</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="instructor-bio-text" [class.expanded]="isInstructorExpanded">
+          <p>
+            Hello I'm Pedri, a professional web developer with more than 10 years of experience in this industry. He has taught over 100,000 students worldwide and is passionate about making web development accessible to everyone.
+          </p>
+        </div>
+        <button class="btn-show-more" (click)="toggleInstructor()">
+          <span>{{ isInstructorExpanded ? 'Show less' : 'Show more' }}</span>
+          <ion-icon [name]="isInstructorExpanded ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+        </button>
+
+        <button class="btn-view-profile">
+          View Profile
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

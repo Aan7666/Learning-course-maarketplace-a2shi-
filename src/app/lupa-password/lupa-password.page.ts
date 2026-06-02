@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class LupaPasswordPage implements OnInit {
-  otpCode: string = '';
+  emailAddress: string = '';
 
   constructor(private router: Router) { }
 
@@ -20,22 +20,20 @@ export class LupaPasswordPage implements OnInit {
   }
 
   onContinue() {
-    if (!this.otpCode.trim()) {
-      alert('Please enter the OTP code.');
+    if (!this.emailAddress.trim()) {
+      alert('Please enter your email address.');
       return;
     }
-    if (this.otpCode.trim().length !== 6 || isNaN(Number(this.otpCode.trim()))) {
-      alert('OTP code must be a 6-digit number.');
+    
+    // Simple email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(this.emailAddress.trim())) {
+      alert('Please enter a valid email address.');
       return;
     }
 
-    alert('OTP Code verified successfully!');
-    // Redirect to home page
-    this.router.navigate(['/tabs']);
-  }
-
-  onSendAgain() {
-    alert('OTP Code has been resent to your email!');
+    alert('Password reset link has been sent to your email!');
+    this.router.navigate(['/login']);
   }
 
   onClose() {
