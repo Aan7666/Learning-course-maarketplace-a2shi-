@@ -108,6 +108,11 @@ ion-content {
   padding: 14px 18px;
   box-sizing: border-box;
   transition: all 0.2s ease;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-family: inherit;
 
   .item-icon {
     font-size: 20px;

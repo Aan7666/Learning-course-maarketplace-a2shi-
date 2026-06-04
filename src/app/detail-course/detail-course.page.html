@@ -126,7 +126,7 @@
             <h4 class="part-title">Bagian {{ part.partNumber }} - {{ part.title }}</h4>
             
             <div class="lesson-list" *ngIf="part.lessons && part.lessons.length > 0">
-              <div class="lesson-item" *ngFor="let lesson of part.lessons">
+              <div class="lesson-item" *ngFor="let lesson of part.lessons" (click)="goToVideoMateri()">
                 <div class="lesson-index">{{ lesson.number }}</div>
                 <div class="lesson-details">
                   <div class="lesson-title">{{ lesson.title }}</div>

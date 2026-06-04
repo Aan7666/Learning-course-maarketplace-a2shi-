@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { IonicModule, ModalController } from '@ionic/angular';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule]
 })
 export class ProfilePage implements OnInit {
   isLoggedIn: boolean = false;
@@ -19,7 +19,8 @@ export class ProfilePage implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {
@@ -57,10 +58,21 @@ export class ProfilePage implements OnInit {
   }
 
   onAboutUs() {
-    // this.router.navigate(['/about']);
+    console.log('Navigating to /about-us page...');
+    this.router.navigate(['/about-us']);
   }
 
   onHelpSupport() {
-    // this.router.navigate(['/help']);
+    console.log('Navigating to /help-and-support page...');
+    this.router.navigate(['/help-and-support']);
+  }
+
+  closeHelp() {
+    this.modalController.dismiss();
+  }
+
+  goToHistory() {
+    console.log('Navigating to /history page...');
+    this.router.navigate(['/history']);
   }
 }

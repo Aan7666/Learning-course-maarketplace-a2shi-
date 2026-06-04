@@ -106,4 +106,8 @@ export class DetailCoursePage implements OnInit {
   async buyNow() {
     this.router.navigate(['/checkout']);
   }
+
+  goToVideoMateri() {
+    this.router.navigate(['/video-materi']);
+  }
 }

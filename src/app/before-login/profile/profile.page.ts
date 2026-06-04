@@ -57,10 +57,10 @@ export class ProfilePage implements OnInit {
   }
 
   onAboutUs() {
-    // this.router.navigate(['/about']);
+    this.router.navigate(['/about-us']);
   }
 
   onHelpSupport() {
-    // this.router.navigate(['/help']);
+    this.router.navigate(['/help-and-support']);
   }
 }

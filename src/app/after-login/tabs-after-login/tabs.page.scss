@@ -14,6 +14,8 @@ ion-tabs {
     flex: 1;
     display: block;
     position: relative;
+    overflow: hidden; // ← tambah ini
+    min-height: 0;
   }
 }
 
@@ -74,6 +76,7 @@ ion-tab-button {
 
 // ── Bubble FIXED — benar-benar di luar semua container ──────
 .floating-bubble {
+  pointer-events: none;
   position: fixed;
   bottom: 12px; // (60px tab-bar / 2) + offset naik
   left: 50%;
@@ -88,6 +91,7 @@ ion-tab-button {
   z-index: 9999; // di atas segalanya
   box-shadow: 0 4px 12px rgba(133, 41, 32, 0.4);
   cursor: pointer;
+
 
   ion-icon {
     font-size: 26px;

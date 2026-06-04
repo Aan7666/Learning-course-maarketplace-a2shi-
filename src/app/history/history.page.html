@@ -1,0 +1,129 @@
+<ion-content [fullscreen]="true" class="history-content">
+  <!-- Red Header Section -->
+  <div class="red-header">
+    <button class="back-btn" (click)="goBack()">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+      <span>Back</span>
+    </button>
+    <h1 class="header-title">History</h1>
+  </div>
+
+  <!-- Main Container overlapping the header -->
+  <div class="main-container">
+
+    <!-- Segment / Tabs System -->
+    <div class="custom-tabs-segment">
+      <div 
+        class="tab-segment-btn" 
+        [class.active]="activeTab === 'transactions'"
+        (click)="setActiveTab('transactions')"
+      >
+        Transactions
+      </div>
+      <div 
+        class="tab-segment-btn" 
+        [class.active]="activeTab === 'progress'"
+        (click)="setActiveTab('progress')"
+      >
+        Learning Progress
+      </div>
+    </div>
+
+    <!-- Dynamic Tab Content -->
+    <div class="tab-content-container">
+
+      <!-- TRANSACTIONS TAB -->
+      <div class="tab-pane animate-fade-in" *ngIf="activeTab === 'transactions'">
+        <div class="transaction-list" *ngIf="transactions.length > 0; else noTx">
+          
+          <div class="transaction-card" *ngFor="let tx of transactions" (click)="showInvoiceDetail(tx)">
+            <div class="tx-header">
+              <span class="tx-date">{{ tx.date }}</span>
+              <span class="status-badge" [ngClass]="tx.status">
+                {{ tx.status === 'success' ? 'Sukses' : (tx.status === 'pending' ? 'Pending' : 'Batal') }}
+              </span>
+            </div>
+
+            <h3 class="tx-title">{{ tx.courseTitle }}</h3>
+            <p class="tx-invoice">{{ tx.invoice }}</p>
+
+            <div class="tx-footer">
+              <div class="tx-price-box">
+                <span class="price-label">Total Pembayaran</span>
+                <span class="price-value">{{ tx.price }}</span>
+              </div>
+              <button class="btn-invoice-detail">
+                <ion-icon name="document-text-outline"></ion-icon>
+                <span>Detail</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <ng-template #noTx>
+          <div class="empty-state">
+            <ion-icon name="receipt-outline" class="empty-icon"></ion-icon>
+            <h3>Belum ada transaksi</h3>
+            <p>Anda belum melakukan pembelian kelas apa pun.</p>
+          </div>
+        </ng-template>
+      </div>
+
+      <!-- LEARNING PROGRESS TAB -->
+      <div class="tab-pane animate-fade-in" *ngIf="activeTab === 'progress'">
+        <div class="progress-list" *ngIf="learningProgressList.length > 0; else noProgress">
+          
+          <div class="progress-card" *ngFor="let course of learningProgressList">
+            <div class="progress-header">
+              <h3 class="course-title">{{ course.courseTitle }}</h3>
+              <span class="completion-percent" [class.completed]="course.completed">
+                {{ course.progress }}% {{ course.completed ? 'Selesai' : '' }}
+              </span>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar-container">
+              <div class="progress-bar-fill" [style.width.%]="course.progress" [class.completed]="course.completed"></div>
+            </div>
+
+            <p class="last-lesson-info">
+              <ion-icon name="play-outline" class="lesson-icon" *ngIf="!course.completed"></ion-icon>
+              <ion-icon name="checkmark-circle-outline" class="lesson-icon completed" *ngIf="course.completed"></ion-icon>
+              <span>{{ course.completed ? 'Kelas Selesai' : course.lastLesson }}</span>
+            </p>
+
+            <div class="progress-actions">
+              <button 
+                *ngIf="!course.completed" 
+                class="btn-continue-learning" 
+                (click)="continueCourse(course)"
+              >
+                Lanjutkan Belajar
+              </button>
+              <button 
+                *ngIf="course.completed" 
+                class="btn-claim-cert" 
+                (click)="claimCertificate(course)"
+              >
+                <ion-icon name="ribbon-outline"></ion-icon>
+                <span>Unduh Sertifikat</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <ng-template #noProgress>
+          <div class="empty-state">
+            <ion-icon name="school-outline" class="empty-icon"></ion-icon>
+            <h3>Belum ada kelas aktif</h3>
+            <p>Mulailah belajar dengan membeli kelas pertama Anda!</p>
+          </div>
+        </ng-template>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>
