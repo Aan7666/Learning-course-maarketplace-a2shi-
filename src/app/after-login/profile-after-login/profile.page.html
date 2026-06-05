@@ -1,0 +1,174 @@
+<ion-content [fullscreen]="true">
+  <!-- Red Header Section -->
+  <div class="red-header">
+    <h1 class="header-title">Account</h1>
+  </div>
+
+  <!-- Main Container -->
+  <div class="main-container">
+
+    <!-- ── BELUM LOGIN ───────────────────────────────── -->
+    <ng-container *ngIf="!isLoggedIn">
+
+      <!-- Guest Avatar Card -->
+      <div class="profile-header-card">
+        <div class="avatar-wrapper">
+          <ion-icon name="person-circle" class="avatar-icon"></ion-icon>
+        </div>
+        <h2 class="profile-name">Welcome to A2SHI</h2>
+      </div>
+
+      <!-- Sign In Button -->
+      <div class="action-container top">
+        <button class="btn-signin" (click)="onSignIn()">SIGN IN</button>
+      </div>
+
+      <!-- Menu Informations only -->
+      <div class="menu-container">
+        <div class="menu-group">
+          <span class="section-label">Activity</span>
+
+          <button class="menu-item-box clickable" (click)="goToHistory()">
+            <ion-icon name="receipt-outline" class="item-icon"></ion-icon>
+            <span class="item-text">History</span>
+          </button>
+        </div>
+
+        <div class="menu-group">
+          <span class="section-label">Informations</span>
+
+          <button class="menu-item-box clickable" (click)="onAboutUs()">
+            <ion-icon name="information-circle-outline" class="item-icon"></ion-icon>
+            <span class="item-text">About Us</span>
+          </button>
+
+          <button class="menu-item-box clickable" id="open-help-modal">
+            <ion-icon name="help-circle-outline" class="item-icon"></ion-icon>
+            <span class="item-text">Help and Support</span>
+          </button>
+        </div>
+      </div>
+
+    </ng-container>
+
+    <!-- ── SUDAH LOGIN ───────────────────────────────── -->
+    <ng-container *ngIf="isLoggedIn">
+
+      <!-- Profile Avatar Card -->
+      <div class="profile-header-card">
+        <div class="avatar-wrapper">
+          <ion-icon name="person-circle" class="avatar-icon"></ion-icon>
+        </div>
+        <h2 class="profile-name">{{ userName }}</h2>
+        <p class="profile-email">{{ userEmail }}</p>
+      </div>
+
+      <!-- Menu Sections -->
+      <div class="menu-container">
+        <div class="menu-group">
+          <span class="section-label">Name</span>
+          <div class="menu-item-box">
+            <ion-icon name="person-outline" class="item-icon"></ion-icon>
+            <span class="item-text">{{ userName }}</span>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <span class="section-label">Activity</span>
+
+          <button class="menu-item-box clickable" (click)="goToHistory()">
+            <ion-icon name="receipt-outline" class="item-icon"></ion-icon>
+            <span class="item-text">History</span>
+          </button>
+        </div>
+
+        <div class="menu-group">
+          <span class="section-label">Informations</span>
+
+          <button class="menu-item-box clickable" (click)="onAboutUs()">
+            <ion-icon name="information-circle-outline" class="item-icon"></ion-icon>
+            <span class="item-text">About Us</span>
+          </button>
+
+          <button class="menu-item-box clickable" id="open-help-modal">
+            <ion-icon name="help-circle-outline" class="item-icon"></ion-icon>
+            <span class="item-text">Help and Support</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sign Out Button -->
+      <div class="action-container">
+        <button class="btn-signout" (click)="onSignOut()">SIGN OUT</button>
+      </div>
+
+    </ng-container>
+
+  </div>
+  <!-- Help and Support Modal -->
+  <ion-modal trigger="open-help-modal" class="custom-profile-modal">
+    <ng-template>
+      <ion-header class="ion-no-border">
+        <ion-toolbar class="modal-toolbar">
+          <ion-title>Help & Support</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeHelp()" class="close-modal-btn">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="modal-content-wrapper">
+        <div class="modal-body-container">
+          <div class="support-welcome">
+            <ion-icon name="chatbubbles-outline" class="support-welcome-icon"></ion-icon>
+            <h3>Pusat Bantuan</h3>
+            <p>Temukan jawaban FAQ atau hubungi customer service kami jika ada kendala.</p>
+          </div>
+
+          <div class="faq-section-group">
+            <h4 class="group-title">Pertanyaan Sering Diajukan (FAQ)</h4>
+
+            <ion-accordion-group>
+              <ion-accordion value="first" class="faq-accordion-item">
+                <ion-item slot="header">
+                  <ion-label class="faq-question">Bagaimana cara memulai belajar?</ion-label>
+                </ion-item>
+                <div class="faq-answer-pane" slot="content">
+                  Pilih materi/kelas yang telah Anda beli dari dashboard atau riwayat (history), klik tombol "Lanjutkan
+                  Belajar" atau "Memulai" untuk masuk ke pemutar materi.
+                </div>
+              </ion-accordion>
+
+              <ion-accordion value="second" class="faq-accordion-item">
+                <ion-item slot="header">
+                  <ion-label class="faq-question">Apakah sertifikat berbayar?</ion-label>
+                </ion-item>
+                <div class="faq-answer-pane" slot="content">
+                  Tidak. Semua sertifikat kelulusan kelas di A2SHI Academy dapat diunduh secara gratis dalam format PDF
+                  setelah progres belajar mencapai 100%.
+                </div>
+              </ion-accordion>
+
+              <ion-accordion value="third" class="faq-accordion-item">
+                <ion-item slot="header">
+                  <ion-label class="faq-question">Metode pembayaran apa saja yang tersedia?</ion-label>
+                </ion-item>
+                <div class="faq-answer-pane" slot="content">
+                  Kami mendukung pembayaran menggunakan berbagai e-Wallet populer (Dana, GoPay, OVO, ShopeePay) serta
+                  Virtual Account bank terkemuka di Indonesia (BCA, Mandiri, BNI, BRI).
+                </div>
+              </ion-accordion>
+            </ion-accordion-group>
+          </div>
+
+          <div class="direct-contact-channels">
+            <h4 class="group-title">Butuh Bantuan Lebih Lanjut?</h4>
+            <button class="contact-btn-email">
+              <ion-icon name="mail-outline"></ion-icon>
+              <span>Kirim Email Bantuan</span>
+            </button>
+          </div>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

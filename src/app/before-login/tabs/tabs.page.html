@@ -1,0 +1,47 @@
+<div class="tabs-container">
+  <div class="tabs-inner-scroll-y" style="flex: 1; height: calc(100% - 60px); overflow-y: auto;">
+    <app-home *ngIf="activeTab === 'home'"></app-home>
+    <app-wishlist *ngIf="activeTab === 'wishlist'"></app-wishlist>
+    <app-courses *ngIf="activeTab === 'courses'"></app-courses>
+    <app-search *ngIf="activeTab === 'search'"></app-search>
+    <app-profile *ngIf="activeTab === 'profile'"></app-profile>
+  </div>
+
+  <ion-tab-bar slot="bottom">
+
+    <ion-tab-button (click)="selectTab('home')" [class.tab-selected]="activeTab === 'home'">
+      <ion-icon [name]="activeTab === 'home' ? 'home' : 'home-outline'"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="selectTab('wishlist')" [class.tab-selected]="activeTab === 'wishlist'">
+      <ion-icon [name]="activeTab === 'wishlist' ? 'heart' : 'heart-outline'"></ion-icon>
+      <ion-label>Wishlist</ion-label>
+    </ion-tab-button>
+
+    <!-- Tab tengah: kosong, hanya label -->
+    <ion-tab-button (click)="selectTab('courses')" [class.tab-selected]="activeTab === 'courses'" class="tab-center">
+    </ion-tab-button>
+
+    <ion-tab-button (click)="selectTab('search')" [class.tab-selected]="activeTab === 'search'">
+      <ion-icon [name]="activeTab === 'search' ? 'search' : 'search-outline'"></ion-icon>
+      <ion-label>Search</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="selectTab('profile')" [class.tab-selected]="activeTab === 'profile'">
+      <ion-icon [name]="activeTab === 'profile' ? 'person' : 'person-outline'"></ion-icon>
+      <ion-label>Account</ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</div>
+
+<!-- Bubble FIXED di luar semua container -->
+<div class="floating-bubble" [class.active]="activeTab === 'courses'" (click)="navigateToCourses()">
+  <ion-icon [name]="activeTab === 'courses' ? 'book' : 'book-outline'"></ion-icon>
+</div>
+
+<div class="signin-banner" *ngIf="!isLoggedIn && activeTab !== 'profile'">
+  <span class="banner-text">Sign in to unlock the full potential of your learning journey.</span>
+  <a class="banner-link" (click)="redirectToLogin()">SIGN IN</a>
+</div>

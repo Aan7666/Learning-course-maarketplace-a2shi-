@@ -17,7 +17,41 @@ export class AuthService {
   private readonly USERS_KEY = 'a2shi_users';
   private readonly SESSION_KEY = 'a2shi_current_users';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.seedDummyUsers();
+  }
+
+  /**
+   * Seed dummy users for testing/offline mode if not already present
+   */
+  private seedDummyUsers(): void {
+    const users = this.getUsers();
+    const dummyUsers: User[] = [
+      {
+        email: 'admin@gmail.com',
+        fullName: 'Admin Dummy',
+        password: 'admin'
+      },
+      {
+        email: 'user@gmail.com',
+        fullName: 'User Dummy',
+        password: 'user123'
+      }
+    ];
+
+    let modified = false;
+    for (const dummy of dummyUsers) {
+      const exists = users.some(u => u.email.toLowerCase() === dummy.email.toLowerCase());
+      if (!exists) {
+        users.push(dummy);
+        modified = true;
+      }
+    }
+
+    if (modified) {
+      this.saveUsers(users);
+    }
+  }
 
   /**
    * Get all registered users from LocalStorage

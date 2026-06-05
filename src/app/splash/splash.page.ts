@@ -15,9 +15,14 @@ export class SplashPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    // Redirect to the login screen after 3 seconds
+    // Redirect after 3 seconds depending on privacy policy acceptance
     setTimeout(() => {
-      this.router.navigateByUrl('/login', { replaceUrl: true });
+      const accepted = localStorage.getItem('privacy_policy_accepted');
+      if (accepted === 'true') {
+        this.router.navigateByUrl('/login', { replaceUrl: true });
+      } else {
+        this.router.navigateByUrl('/privacy-policy', { replaceUrl: true });
+      }
     }, 3000);
   }
 }

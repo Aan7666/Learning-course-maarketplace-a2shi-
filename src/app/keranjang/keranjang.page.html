@@ -1,9 +1,13 @@
 <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/home" color="light"></ion-back-button>
+      <ion-back-button 
+        defaultHref="/tabs-after-login/home" 
+        mode="ios"
+        [text]="''">
+      </ion-back-button>
     </ion-buttons>
-    <ion-title color="light">Keranjang Belanja</ion-title>
+    <ion-title>Shopping Cart</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,10 +16,13 @@
     <div class="icon-circle">
       <ion-icon name="cart-outline"></ion-icon>
     </div>
-    <h2>Keranjang Anda Kosong</h2>
-    <p>Jelajahi berbagai kursus menarik kami dan mulailah belajar hari ini!</p>
-    <ion-button expand="block" class="explore-btn" routerLink="/tabs/home">
-      Cari Kursus
-    </ion-button>
+    <h2>Your Cart is Empty</h2>
+    <p>Add courses to your cart and continue your learning journey.</p>
   </div>
 </ion-content>
+
+<div class="bottom-action">
+  <ion-button expand="block" class="explore-btn" routerLink="/tabs-after-login/search">
+    Explore Courses
+  </ion-button>
+</div>

@@ -1,0 +1,320 @@
+// ---- Variables ----
+$primary: #832e25;
+$primary-container: #a2453a;
+$surface: #fbf9f8;
+$on-surface: #1b1c1b;
+$on-surface-variant: #56423f;
+$outline-variant: #dcc0bc;
+$input-bg: #DBDBDB;
+
+// ---- Host ----
+:host {
+  display: block;
+  height: 100%;
+}
+
+// ---- Wrapper ----
+.privacy-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  font-family: 'Lexend', sans-serif;
+  background: $primary;
+}
+
+// ---- Background Gradient Layer ----
+.background-layer {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, #832e25 0%, #a2453a 100%);
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 45px;
+}
+
+.brand-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.brand-title {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.brand-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+// ---- Stars Layer ----
+.stars-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.1;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+// ---- Main Content ----
+.main-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+// ---- Slide-up Animation ----
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+// ---- Privacy Card ----
+.privacy-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 480px;
+  border-radius: 40px 40px 0 0;
+  padding: 32px 24px 32px;
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 85vh;
+  box-sizing: border-box;
+
+  &.animate-slide-up {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+// ---- Card Header ----
+.card-header {
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: $on-surface;
+    margin: 0 0 8px;
+    line-height: 1.2;
+  }
+
+  p {
+    font-size: 13px;
+    font-weight: 400;
+    color: $on-surface-variant;
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+// ---- Scrollable Policy Content ----
+.policy-content {
+  width: 100%;
+  flex-grow: 1;
+  overflow-y: auto;
+  border: 1px solid $outline-variant;
+  border-radius: 16px;
+  padding: 16px;
+  background-color: #faf7f6;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  text-align: left;
+
+  // Custom Scrollbar
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba($primary, 0.2);
+    border-radius: 9999px;
+    &:hover {
+      background: rgba($primary, 0.4);
+    }
+  }
+
+  h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: $primary;
+    margin: 16px 0 8px;
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  p {
+    font-size: 13px;
+    color: $on-surface;
+    line-height: 1.6;
+    margin: 0 0 12px;
+  }
+
+  ul {
+    padding-left: 20px;
+    margin: 0 0 16px;
+    
+    li {
+      font-size: 12.5px;
+      color: $on-surface;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+  }
+
+  .last-updated {
+    font-size: 11px;
+    font-style: italic;
+    color: $on-surface-variant;
+    margin-top: 24px;
+    margin-bottom: 0;
+  }
+}
+
+// ---- Consent Checkbox Container ----
+.consent-container {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 13px;
+  color: $on-surface-variant;
+  line-height: 1.4;
+
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    // Checked styles
+    &:checked ~ .custom-checkbox {
+      background-color: $primary;
+      border-color: $primary;
+      transform: scale(1.05);
+
+      .check-icon {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+  }
+
+  .custom-checkbox {
+    position: relative;
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border: 2px solid $outline-variant;
+    border-radius: 6px;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    background-color: #ffffff;
+    margin-top: 2px;
+
+    .check-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.6);
+      font-size: 16px;
+      color: #ffffff;
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-weight: 900;
+    }
+  }
+
+  &:hover {
+    .custom-checkbox {
+      border-color: $primary-container;
+    }
+  }
+}
+
+// ---- CTA Button ----
+.btn-primary {
+  width: 100%;
+  height: 56px;
+  background-color: $primary-container;
+  color: #ffffff;
+  font-family: 'Lexend', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 9999px;
+  box-shadow: 0 4px 16px rgba(131, 46, 37, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover:not([disabled]) {
+    background-color: $primary;
+    box-shadow: 0 6px 24px rgba(131, 46, 37, 0.4);
+    transform: translateY(-1px);
+  }
+
+  &:active:not([disabled]) {
+    transform: scale(0.97);
+  }
+
+  &[disabled] {
+    background-color: #e2d7d5;
+    color: #a4918e;
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.8;
+  }
+}
+
+// ---- Responsive ----
+@media (min-width: 480px) {
+  .privacy-card {
+    padding: 40px 32px;
+    border-radius: 40px;
+    margin-bottom: 24px;
+    max-height: 80vh;
+  }
+}

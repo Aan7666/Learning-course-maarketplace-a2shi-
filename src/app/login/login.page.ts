@@ -52,17 +52,33 @@ export class LoginPage implements OnInit {
       next: (result) => {
         if (result.success) {
           alert(result.message || 'Login successful!');
-          this.router.navigate(['/tabs']);
+          this.router.navigate(['/tabs-after-login']);
         } else {
           alert(result.message || 'Login failed.');
         }
       },
       error: (err) => {
-        console.error(err);
-        const errMsg = err.error?.message || 'Email atau password salah!';
-        alert(errMsg);
+        console.warn('API login failed, trying offline/local login...', err);
+        // Fallback to local authentication
+        const localResult = this.authService.loginLocal(this.username, this.password);
+        if (localResult.success) {
+          alert(localResult.message || 'Login successful (Offline Mode)!');
+          this.router.navigate(['/tabs-after-login']);
+        } else {
+          console.error(err);
+          const errMsg = err.error?.message || 'Email atau password salah!';
+          alert(errMsg);
+        }
       }
     });
+  }
+
+  fillDummyCredentials(role: 'user') {
+    if (role === 'user') {
+      this.username = 'user@gmail.com';
+      this.password = 'user123';
+    }
+    this.onLogin();
   }
 
   loginWithGoogle() {
@@ -77,6 +93,6 @@ export class LoginPage implements OnInit {
     });
     this.authService.loginLocal(mockGoogleEmail, 'google_password');
     alert('Google Login successful!');
-    this.router.navigate(['/tabs']);
+    this.router.navigate(['/tabs-after-login']);
   }
 }

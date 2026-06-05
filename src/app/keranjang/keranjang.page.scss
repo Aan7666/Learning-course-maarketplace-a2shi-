@@ -1,6 +1,39 @@
+:host {
+  --header-bg:          #852920;
+  --header-color:       #ffffff;
+  --header-font-size:   18px;
+  --header-font-weight: 700;
+  --header-height:      56px;
+  --back-icon-color:    #ffffff;
+  --back-icon-size:     24px;
+}
+
 ion-toolbar {
-  --background: #852920;
-  --color: #ffffff;
+  --background: var(--header-bg);
+  --color: var(--header-color);
+  --min-height: var(--header-height);
+}
+
+ion-title {
+  font-size: var(--header-font-size);
+  font-weight: var(--header-font-weight);
+  color: var(--header-color);
+}
+
+// Fix warna icon back — override semua layer Ionic
+ion-back-button {
+  --color: var(--back-icon-color) !important;
+  --icon-font-size: var(--back-icon-size);
+  color: var(--back-icon-color) !important;
+
+  &::part(native) {
+    color: var(--back-icon-color) !important;
+  }
+
+  &::part(icon) {
+    color: var(--back-icon-color) !important;
+    fill: var(--back-icon-color) !important;
+  }
 }
 
 .cart-content {
@@ -12,7 +45,7 @@ ion-toolbar {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 80%;
+  height: calc(100% - 80px);
   padding: 24px;
   text-align: center;
 
@@ -42,10 +75,22 @@ ion-toolbar {
   p {
     font-size: 14px;
     color: #757575;
-    margin: 0 0 32px 0;
+    margin: 0;
     line-height: 1.5;
     max-width: 260px;
+    opacity: 0.85;
   }
+}
+
+.bottom-action {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background-color: #f7f5f5;
+  border-top: 1px solid #e0e0e0;
+  box-sizing: border-box;
 
   .explore-btn {
     --background: #852920;
@@ -54,6 +99,15 @@ ion-toolbar {
     --box-shadow: 0 4px 12px rgba(133, 41, 32, 0.2);
     font-weight: 700;
     width: 100%;
-    max-width: 200px;
+    margin: 0;
+    text-transform: none; // ← nonaktifkan kapital
+    letter-spacing: 0;    // ← hilangkan spasi antar huruf bawaan Ionic
+    font-size: 16px;
+    width: 700;
+
+    &::part(native) {
+      text-transform: none; // ← override dari shadow DOM Ionic
+      letter-spacing: 0;
+    }
   }
 }

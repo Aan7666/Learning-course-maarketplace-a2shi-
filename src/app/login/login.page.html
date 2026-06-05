@@ -60,16 +60,32 @@
         <div class="line"></div>
       </div>
 
-      <button type="button" class="btn-social">
+      <button type="button" class="btn-social" (click)="loginWithGoogle()">
         <img
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzd6zNR1Yao3qqAJ3aXriyKcDlkOrJF8xleGQVPFhrzo5BRKz_oiTFpm3ixeAfairpDZse3bAekR5rjmmQLTCD3Qcy0KUM73jmVfa8CgNCpkvqmBofn8f5ANvc1AsltpqT3kahE--k33mjtpRKOwR1wM4EzH-xzcWAbYkioprA7RW_06m-EUeOsOykU9WP_H1qRYke4FhSnwzaAY14WS_82MXhlI9JZACZ2hM5hBgArJd9fc1A3Nbog2m-88EHJ-xI_eHZeTHYMnA"
+          src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
           alt="Google" />
         <span>Google</span>
       </button>
 
-      <button type="button" class="btn-guest" routerLink="/tabs">
-        <span class="material-symbols-outlined">home</span>
-        <span>Continue to Home</span>
+      <div class="divider">
+        <div class="line"></div>
+        <span>Quick Demo Login</span>
+        <div class="line"></div>
+      </div>
+
+      <div class="dummy-login-container">
+        <button type="button" class="btn-dummy user" (click)="fillDummyCredentials('user')">
+          <span class="material-symbols-outlined">person</span>
+          <div class="dummy-text">
+            <span class="dummy-title">Demo User</span>
+            <span class="dummy-sub">user@gmail.com</span>
+          </div>
+        </button>
+      </div>
+
+      <button type="button" class="btn-guest" routerLink="/tabs" style="margin-top: 12px;">
+        <span class="material-symbols-outlined">logout</span>
+        <span>Tampilan belum Login</span>
       </button>
 
     </div>

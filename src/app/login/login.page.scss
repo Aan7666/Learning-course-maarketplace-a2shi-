@@ -38,7 +38,7 @@ ion-content {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 72px;
+  padding-top: 45px;
 }
 
 .brand-area {
@@ -99,7 +99,7 @@ ion-content {
     transform: translateY(100%);
   }
   to {
-    transform: translateY(0);
+    transform: translateY(20px);
   }
 }
 
@@ -351,6 +351,84 @@ ion-content {
 
   &:active {
     transform: scale(0.97);
+  }
+}
+
+// ---- Dummy Login Styles ----
+.dummy-login-container {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.btn-dummy {
+  flex: 1;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  background-color: $surface;
+  border: 1px solid $outline-variant;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+
+  .material-symbols-outlined {
+    font-size: 20px;
+    color: $primary;
+    font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+  }
+
+  .dummy-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .dummy-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: $on-surface;
+    line-height: 1.2;
+  }
+
+  .dummy-sub {
+    font-size: 10px;
+    color: $on-surface-variant;
+    opacity: 0.8;
+    line-height: 1;
+  }
+
+  &:hover {
+    background-color: rgba($primary-container, 0.05);
+    border-color: $primary;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba($primary, 0.08);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &.admin {
+    .material-symbols-outlined {
+      color: #b7791f;
+    }
+    &:hover {
+      background-color: rgba(#b7791f, 0.05);
+      border-color: #b7791f;
+      box-shadow: 0 4px 12px rgba(#b7791f, 0.08);
+    }
+  }
+
+  &.user {
+    .material-symbols-outlined {
+      color: $primary;
+    }
   }
 }
 
